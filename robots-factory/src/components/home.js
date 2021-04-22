@@ -7,7 +7,7 @@ import {
   Row,
 } from "react-bootstrap";
 import { connect } from "react-redux";
-import { getRobot } from "../actions";
+import { getRobot, deleteRobot } from "../actions";
 
 import { Link } from "react-router-dom";
 
@@ -23,6 +23,10 @@ const Home = (props) => {
     console.log(inputRef.current.value);
     props.getRobot(Eddy);
     inputRef.current.value = "";
+  };
+
+  const removeRobot = (idx) => {
+    props.deleteRobot(idx);
   };
 
   return (
@@ -42,9 +46,17 @@ const Home = (props) => {
         <ul className="mx-auto">
           {props.robotList
             ? props.robotList.map((robot, idx) => (
-                <li key={idx}>
-                  <Link to={"/robot/" + idx}>{robot.name}</Link>
-                </li>
+                <div className="d-flex mt-3">
+                  <li key={idx}>
+                    <Link to={"/robot/" + idx}>{robot.name}</Link>
+                  </li>
+                  <Button
+                    className="bg-dark text-white ml-5"
+                    onClick={() => removeRobot(idx)}
+                  >
+                    Terminate Robot
+                  </Button>
+                </div>
               ))
             : null}
         </ul>
@@ -59,4 +71,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getRobot })(Home);
+export default connect(mapStateToProps, { getRobot, deleteRobot })(Home);

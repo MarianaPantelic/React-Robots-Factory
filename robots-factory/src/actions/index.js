@@ -4,3 +4,10 @@ export const getRobot = (robot) => {
     payload: robot,
   };
 };
+
+export const deleteRobot = (idx) => {
+  return {
+    type: "DELETE_ROBOT",
+    payload: idx,
+  };
+};
