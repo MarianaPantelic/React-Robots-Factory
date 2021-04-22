@@ -11,12 +11,17 @@ import { getRobot } from "../actions";
 
 import { Link } from "react-router-dom";
 
+import TheRobot from "../robotClass";
+
 const Home = (props) => {
   const inputRef = useRef();
 
   const createRobot = () => {
+    let Eddy = new TheRobot();
+    Eddy.name = inputRef.current.value;
+    Eddy.id = Math.floor(Math.random() * 1000);
     console.log(inputRef.current.value);
-    props.getRobot(inputRef.current.value);
+    props.getRobot(Eddy);
     inputRef.current.value = "";
   };
 
@@ -38,7 +43,7 @@ const Home = (props) => {
           {props.robotList
             ? props.robotList.map((robot, idx) => (
                 <li key={idx}>
-                  <Link to={"/robot/" + idx}>{robot}</Link>
+                  <Link to={"/robot/" + idx}>{robot.name}</Link>
                 </li>
               ))
             : null}

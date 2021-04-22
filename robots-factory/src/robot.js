@@ -10,42 +10,25 @@ import robot5 from "./img/man-320272_640.png";
 import TheRobot from "./robotClass";
 
 const Robot = (props) => {
-  let myRobot = new TheRobot();
-
-  const initialState = {
-    posX: myRobot.posX,
-    posY: myRobot.posY,
-    direction: myRobot.direction,
-  };
-
-  const [state, setState] = useState(initialState);
-
-  console.log(state);
-
   let images = [robot1, robot2, robot3, robot4, robot5];
   const { id } = useParams();
   console.log(id);
 
-  let robotId = Number(id) + 1000;
-
   const foundRobot = props.robotList[id];
+  console.log(foundRobot);
   if (!foundRobot) {
     console.log("error");
   }
 
   const left = () => {
-    myRobot.turnLeft(state.direction);
-    setState({ ...state, direction: myRobot.direction });
+    foundRobot.turnLeft(foundRobot.direction);
   };
 
   const right = () => {
-    myRobot.turnRight(state.direction);
-    setState({ ...state, direction: myRobot.direction });
+    foundRobot.turnRight(foundRobot.direction);
   };
   const go = () => {
-    myRobot.moveForward(state.direction, state.posX, state.posY);
-    setState({ ...state, posX: myRobot.posX, posY: myRobot.posY });
-    console.log(myRobot);
+    foundRobot.moveForward(foundRobot.direction);
   };
 
   return (
@@ -58,11 +41,11 @@ const Robot = (props) => {
             </Col>
             <Col size={6} style={{ marginTop: "50px" }}>
               <ul>
-                <li>ID: {robotId}</li>
-                <li>Name: {props.robotList[id]}</li>
-                <li>PosX: {state.posX}</li>
-                <li>PosY: {state.posY}</li>
-                <li>Heading: {state.direction}</li>
+                <li>ID: {foundRobot.id}</li>
+                <li>Name: {foundRobot.name}</li>
+                <li>PosX: {foundRobot.posX}</li>
+                <li>PosY: {foundRobot.posY}</li>
+                <li>Heading: {foundRobot.direction}</li>
               </ul>
               <Button className="m-3" onClick={left}>
                 Left

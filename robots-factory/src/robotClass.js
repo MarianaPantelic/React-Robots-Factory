@@ -39,22 +39,22 @@ export default class TheRobot {
     }
   };
 
-  moveForward = (direction, posX, posY) => {
+  moveForward = (direction) => {
     console.log(this.posY);
     console.log(this.posX);
 
     switch (direction) {
       case "NORTH":
-        this.posY = posY + 1;
+        this.posY += 1;
         break;
       case "EAST":
-        this.posX = posY + 1;
+        this.posX += 1;
         break;
       case "SOUTH":
-        this.posY = posY - 1;
+        this.posY -= 1;
         break;
       case "WEST":
-        this.posX = posX - 1;
+        this.posX -= 1;
         break;
     }
   };
