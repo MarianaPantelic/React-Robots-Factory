@@ -15,6 +15,13 @@ const Robot = (props) => {
   console.log(id);
 
   const foundRobot = props.robotList[id];
+
+  const [state, setState] = useState({
+    posX: 0,
+    posY: 0,
+    direction: foundRobot.direction,
+  });
+
   console.log(foundRobot);
   if (!foundRobot) {
     console.log("error");
@@ -22,13 +29,20 @@ const Robot = (props) => {
 
   const left = () => {
     foundRobot.turnLeft(foundRobot.direction);
+    setState({ ...state, direction: foundRobot.direction });
   };
 
   const right = () => {
     foundRobot.turnRight(foundRobot.direction);
+    setState({ ...state, direction: foundRobot.direction });
   };
   const go = () => {
     foundRobot.moveForward(foundRobot.direction);
+    setState({
+      posX: foundRobot.posX,
+      posY: foundRobot.posY,
+      direction: foundRobot.direction,
+    });
   };
 
   return (
