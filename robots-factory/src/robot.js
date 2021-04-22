@@ -61,13 +61,13 @@ const Robot = (props) => {
                 <li>PosY: {foundRobot.posY}</li>
                 <li>Heading: {foundRobot.direction}</li>
               </ul>
-              <Button className="m-3" onClick={left}>
+              <Button className="m-3 bg-dark text-white" onClick={left}>
                 Left
               </Button>
-              <Button className="m-3" onClick={right}>
+              <Button className="m-3 bg-dark text-white" onClick={right}>
                 Right
               </Button>
-              <Button className="m-3" onClick={go}>
+              <Button className="m-3 bg-dark text-white" onClick={go}>
                 Go
               </Button>
             </Col>
