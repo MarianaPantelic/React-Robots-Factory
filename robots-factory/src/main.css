@@ -33,3 +33,7 @@ ul {
   font-size: 30px;
   margin-top: 50px;
 }
+.home a,
+.home a:visited {
+  color: white;
+}

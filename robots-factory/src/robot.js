@@ -8,6 +8,7 @@ import robot3 from "./img/man-320276_640.png";
 import robot4 from "./img/robot-3434997_640.png";
 import robot5 from "./img/man-320272_640.png";
 import TheRobot from "./robotClass";
+import { Link } from "react-router-dom";
 
 const Robot = (props) => {
   let images = [robot1, robot2, robot3, robot4, robot5];
@@ -71,6 +72,11 @@ const Robot = (props) => {
                 Go
               </Button>
             </Col>
+          </Row>
+          <Row>
+            <Button className="mt-5 bg-dark text-white mx-auto home">
+              <Link to="/">Home</Link>
+            </Button>
           </Row>
         </Container>
       ) : null}
