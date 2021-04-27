@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+
 const port = 3001;
 
 /** REQUEST PARSERS */
@@ -21,6 +22,10 @@ createRobot = (robotName) => {
     heading: "NORTH",
     id: Math.floor(Math.random() * 1000),
   });
+};
+
+removeRobot = (id) => {
+  robotFactory = robotFactory.filter((robot) => robot.id !== id);
 };
 
 // write a functions which finds a robot by id and changes his direction clockwise
@@ -89,30 +94,61 @@ app.get("/robots", (req, res) => {
 
 // write a middleware, which creates a new robot using the function createRobot. Read the name from the request body
 app.put("/create", (req, res) => {
-  const robotName = req.body.name;
-  createRobot(robotName);
-  res.send(robotFactory);
+  try {
+    const robotName = req.body.name;
+    createRobot(robotName);
+    res.send(robotFactory);
+  } catch (error) {
+    console.log(error);
+    res.send("Something went wrong");
+  }
 });
 
 // write a middleware, which rotates one robot right using the function rotateRight. Read the id from the request body
 app.post("/right", (req, res) => {
-  let id = req.body.id;
-  turnRight(id);
-  res.send(robotFactory.find((robot) => robot.id === id));
+  try {
+    let id = req.body.id;
+    turnRight(id);
+    res.send(robotFactory.find((robot) => robot.id === id));
+  } catch (error) {
+    console.log(error);
+    res.send("Something went wrong");
+  }
 });
 
 // write a middleware, which rotates one robot left using the function rotateLeft. Read the id from the request body
 app.post("/left", (req, res) => {
-  let id = req.body.id;
-  turnLeft(id);
-  res.send(robotFactory.find((robot) => robot.id === id));
+  try {
+    let id = req.body.id;
+    turnLeft(id);
+    res.send(robotFactory.find((robot) => robot.id === id));
+  } catch (error) {
+    console.log(error);
+    res.send("Something went wrong");
+  }
 });
 
 // write a middleware, which moves the robot using the function moveRobot. Read the id from the request body
 app.post("/move", (req, res) => {
-  let id = req.body.id;
-  moveForward(id);
-  res.send(robotFactory.find((robot) => robot.id === id));
+  try {
+    let id = req.body.id;
+    moveForward(id);
+    res.send(robotFactory.find((robot) => robot.id === id));
+  } catch (error) {
+    console.log(error);
+    res.send("Something went wrong");
+  }
+});
+
+app.delete("/delete", (req, res) => {
+  try {
+    let id = req.body.id;
+    removeRobot(id);
+    res.send(robotFactory);
+  } catch (error) {
+    console.log(error);
+    res.send("Something went wrong");
+  }
 });
 
 app.listen(port, () => {
