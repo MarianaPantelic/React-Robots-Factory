@@ -17,7 +17,7 @@ createRobot = (robotName) => {
   robotFactory.push({
     name: robotName,
     posX: 0,
-    posy: 0,
+    posY: 0,
     heading: "NORTH",
     id: Math.floor(Math.random() * 1000),
   });
@@ -64,18 +64,20 @@ turnLeft = (id) => {
 // write a functions which finds a robot by id and changes his position one step forward
 moveForward = (id) => {
   let robot = robotFactory.find((robot) => robot.id === id);
+  let posX = Number(robot.posX);
+  let posY = Number(robot.posY);
   switch (robot.heading) {
     case "NORTH":
-      robot.posY += 1;
+      robot["posY"] = posY + 1;
       break;
     case "EAST":
-      robot.posX += 1;
+      robot["posX"] = posX + 1;
       break;
     case "SOUTH":
-      robot.posY -= 1;
+      robot["posY"] = posY - 1;
       break;
     case "WEST":
-      robot.posX -= 1;
+      robot["posX"] = posX - 1;
       break;
   }
 };
@@ -108,7 +110,9 @@ app.post("/left", (req, res) => {
 
 // write a middleware, which moves the robot using the function moveRobot. Read the id from the request body
 app.post("/move", (req, res) => {
-  // TODO
+  let id = req.body.id;
+  moveForward(id);
+  res.send(robotFactory.find((robot) => robot.id === id));
 });
 
 app.listen(port, () => {
