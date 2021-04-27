@@ -82,13 +82,14 @@ moveForward = (id) => {
 
 // fill out the middleware function, which responds with the entire robotFactory array
 app.get("/robots", (req, res) => {
-  // TODO
   res.send(robotFactory);
 });
 
 // write a middleware, which creates a new robot using the function createRobot. Read the name from the request body
 app.put("/create", (req, res) => {
-  // TODO
+  const robotName = req.body.name;
+  createRobot(robotName);
+  res.send(robotFactory);
 });
 
 // write a middleware, which rotates one robot right using the function rotateRight. Read the id from the request body
