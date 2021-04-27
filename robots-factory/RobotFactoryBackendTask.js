@@ -94,7 +94,6 @@ app.put("/create", (req, res) => {
 
 // write a middleware, which rotates one robot right using the function rotateRight. Read the id from the request body
 app.post("/right", (req, res) => {
-  // TODO
   let id = req.body.id;
   turnRight(id);
   res.send(robotFactory.find((robot) => robot.id === id));
@@ -102,7 +101,9 @@ app.post("/right", (req, res) => {
 
 // write a middleware, which rotates one robot left using the function rotateLeft. Read the id from the request body
 app.post("/left", (req, res) => {
-  // TODO
+  let id = req.body.id;
+  turnLeft(id);
+  res.send(robotFactory.find((robot) => robot.id === id));
 });
 
 // write a middleware, which moves the robot using the function moveRobot. Read the id from the request body
