@@ -12,26 +12,72 @@ app.use(cors());
 
 let robotFactory = [];
 
-// write function, which adds a json object with the robot name and the default position/heaing to the robotFactory Array
+// write function, which adds a json object with the robot name and the default position/heading to the robotFactory Array
 createRobot = (robotName) => {
   robotFactory.push({
-    // TODO
+    name: robotName,
+    posX: 0,
+    posy: 0,
+    heading: "NORTH",
+    id: Math.floor(Math.random() * 1000),
   });
 };
 
 // write a functions which finds a robot by id and changes his direction clockwise
 turnRight = (id) => {
-  // TODO
+  let robot = robotFactory.find((robot) => robot.id === id);
+  switch (robot.heading) {
+    case "NORTH":
+      robot.heading = "EAST";
+      break;
+    case "EAST":
+      robot.heading = "SOUTH";
+      break;
+    case "SOUTH":
+      robot.heading = "WEST";
+      break;
+    case "WEST":
+      robot.heading = "NORTH";
+      break;
+  }
 };
 
 // write a functions which finds a robot by id and changes his direction anti-clockwise
 turnLeft = (id) => {
-  // TODO
+  let robot = robotFactory.find((robot) => robot.id === id);
+  switch (robot.heading) {
+    case "NORTH":
+      robot.heading = "WEST";
+      break;
+    case "EAST":
+      robot.heading = "NORTH";
+      break;
+    case "SOUTH":
+      robot.heading = "EAST";
+      break;
+    case "WEST":
+      robot.heading = "SOUTH";
+      break;
+  }
 };
 
 // write a functions which finds a robot by id and changes his position one step forward
 moveForward = (id) => {
-  // TODO
+  let robot = robotFactory.find((robot) => robot.id === id);
+  switch (robot.heading) {
+    case "NORTH":
+      robot.posY += 1;
+      break;
+    case "EAST":
+      robot.posX += 1;
+      break;
+    case "SOUTH":
+      robot.posY -= 1;
+      break;
+    case "WEST":
+      robot.posX -= 1;
+      break;
+  }
 };
 
 // fill out the middleware function, which responds with the entire robotFactory array
