@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Button,
   Container,
@@ -13,21 +13,42 @@ import { Link } from "react-router-dom";
 
 import TheRobot from "../robotClass";
 
-const Home = (props) => {
+const axios = require("axios").default;
+
+const Home = () => {
   const inputRef = useRef();
 
-  const createRobot = () => {
-    let Eddy = new TheRobot();
-    Eddy.name = inputRef.current.value;
-    Eddy.id = Math.floor(Math.random() * 1000);
+  const [robots, setRobots] = useState([]);
+
+  useEffect(() => {
+    sendGetRequest();
+  }, []);
+
+  const sendGetRequest = async () => {
+    try {
+      axios
+        .get("http://localhost:3001/robots")
+        .then((resp) => setRobots(resp.data));
+    } catch (error) {
+      //catching rejected requests
+      console.log(error);
+    }
+  };
+
+  const createRobot = async () => {
     console.log(inputRef.current.value);
-    props.getRobot(Eddy);
+    axios
+      .put("http://localhost:3001/create", { name: inputRef.current.value })
+      .then((resp) => sendGetRequest());
     inputRef.current.value = "";
   };
 
   const removeRobot = (idx) => {
-    props.deleteRobot(idx);
+    axios
+      .delete("http://localhost:3001/delete", { data: {} })
+      .then((resp) => sendGetRequest());
   };
+  console.log(robots);
 
   return (
     <Container>
@@ -44,11 +65,13 @@ const Home = (props) => {
 
       <Row>
         <ul className="mx-auto">
-          {props.robotList
-            ? props.robotList.map((robot, idx) => (
+          {robots
+            ? robots.map((robot, idx) => (
                 <div className="d-flex mt-3">
-                  <li key={idx}>
-                    <Link to={"/robot/" + idx}>{robot.name}</Link>
+                  <li key={robot.id} robotList={robots}>
+                    <Link to={"/robot/" + idx} robotList={robots}>
+                      {robot.name}
+                    </Link>
                   </li>
                   <Button
                     className="bg-dark text-white ml-5"
@@ -65,10 +88,4 @@ const Home = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    robotList: state.robots,
-  };
-};
-
-export default connect(mapStateToProps, { getRobot, deleteRobot })(Home);
+export default Home;
