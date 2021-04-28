@@ -41,7 +41,7 @@ const Home = () => {
 
   const removeRobot = (idx) => {
     axios
-      .delete("http://localhost:3001/delete", { data: {} })
+      .delete("http://localhost:3001/delete", { data: { id: robots[idx].id } })
       .then((resp) => sendGetRequest());
   };
   console.log(robots);
