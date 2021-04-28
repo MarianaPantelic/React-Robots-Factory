@@ -44,6 +44,8 @@ turnRight = (id) => {
     case "WEST":
       robot.heading = "NORTH";
       break;
+    default:
+      null;
   }
 };
 
@@ -63,6 +65,8 @@ turnLeft = (id) => {
     case "WEST":
       robot.heading = "SOUTH";
       break;
+    default:
+      null;
   }
 };
 
@@ -84,6 +88,8 @@ moveForward = (id) => {
     case "WEST":
       robot["posX"] = posX - 1;
       break;
+    default:
+      null;
   }
 };
 
@@ -109,7 +115,8 @@ app.post("/right", (req, res) => {
   try {
     let id = req.body.id;
     turnRight(id);
-    res.send(robotFactory.find((robot) => robot.id === id));
+    const robot = robotFactory.find((robot) => robot.id === id);
+    res.send(robot);
   } catch (error) {
     console.log(error);
     res.send("Something went wrong");
@@ -121,7 +128,8 @@ app.post("/left", (req, res) => {
   try {
     let id = req.body.id;
     turnLeft(id);
-    res.send(robotFactory.find((robot) => robot.id === id));
+    const robot = robotFactory.find((robot) => robot.id === id);
+    res.send(robot);
   } catch (error) {
     console.log(error);
     res.send("Something went wrong");
@@ -133,7 +141,8 @@ app.post("/move", (req, res) => {
   try {
     let id = req.body.id;
     moveForward(id);
-    res.send(robotFactory.find((robot) => robot.id === id));
+    const robot = robotFactory.find((robot) => robot.id === id);
+    res.send(robot);
   } catch (error) {
     console.log(error);
     res.send("Something went wrong");

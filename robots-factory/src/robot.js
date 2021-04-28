@@ -14,6 +14,7 @@ const Robot = (props) => {
   let images = [robot1, robot2, robot3, robot4, robot5];
   const { id } = useParams();
   console.log(id);
+  console.log(props);
 
   const foundRobot = props.robotList[id];
 
@@ -84,10 +85,4 @@ const Robot = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    robotList: state.robots,
-  };
-};
-
-export default connect(mapStateToProps)(Robot);
+export default Robot;
