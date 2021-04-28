@@ -6,12 +6,8 @@ import {
   InputGroup,
   Row,
 } from "react-bootstrap";
-import { connect } from "react-redux";
-import { getRobot, deleteRobot } from "../actions";
 
 import { Link } from "react-router-dom";
-
-import TheRobot from "../robotClass";
 
 const axios = require("axios").default;
 
@@ -68,10 +64,8 @@ const Home = () => {
           {robots
             ? robots.map((robot, idx) => (
                 <div className="d-flex mt-3">
-                  <li key={robot.id} robotList={robots}>
-                    <Link to={"/robot/" + idx} robotList={robots}>
-                      {robot.name}
-                    </Link>
+                  <li key={robot.id}>
+                    <Link to={"/robot/" + idx}>{robot.name}</Link>
                   </li>
                   <Button
                     className="bg-dark text-white ml-5"

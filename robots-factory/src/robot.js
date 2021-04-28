@@ -1,55 +1,72 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import { connect } from "react-redux";
 import { useParams } from "react-router";
 import robot1 from "./img/man-320270_640.png";
 import robot2 from "./img/man-320274_640.png";
 import robot3 from "./img/man-320276_640.png";
 import robot4 from "./img/robot-3434997_640.png";
 import robot5 from "./img/man-320272_640.png";
-import TheRobot from "./robotClass";
 import { Link } from "react-router-dom";
 
-const Robot = (props) => {
+const axios = require("axios").default;
+
+const Robot = () => {
   let images = [robot1, robot2, robot3, robot4, robot5];
   const { id } = useParams();
   console.log(id);
-  console.log(props);
 
-  const foundRobot = props.robotList[id];
+  const [robots, setRobots] = useState([]);
 
-  const [state, setState] = useState({
-    posX: 0,
-    posY: 0,
-    direction: foundRobot.direction,
-  });
+  let myRobot = robots[id];
+  console.log(myRobot);
 
-  console.log(foundRobot);
-  if (!foundRobot) {
-    console.log("error");
-  }
+  useEffect(() => {
+    sendGetRequest();
+  }, []);
 
-  const left = () => {
-    foundRobot.turnLeft(foundRobot.direction);
-    setState({ ...state, direction: foundRobot.direction });
+  const sendGetRequest = async () => {
+    try {
+      axios
+        .get("http://localhost:3001/robots")
+        .then((resp) => setRobots(resp.data));
+    } catch (error) {
+      //catching rejected requests
+      console.log(error);
+    }
+  };
+
+  const left = async () => {
+    try {
+      axios
+        .post("http://localhost:3001/left", { id: myRobot.id })
+        .then((resp) => sendGetRequest());
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const right = () => {
-    foundRobot.turnRight(foundRobot.direction);
-    setState({ ...state, direction: foundRobot.direction });
+    try {
+      axios
+        .post("http://localhost:3001/right", { id: myRobot.id })
+        .then((resp) => sendGetRequest());
+    } catch (error) {
+      console.log(error);
+    }
   };
   const go = () => {
-    foundRobot.moveForward(foundRobot.direction);
-    setState({
-      posX: foundRobot.posX,
-      posY: foundRobot.posY,
-      direction: foundRobot.direction,
-    });
+    try {
+      axios
+        .post("http://localhost:3001/move", { id: myRobot.id })
+        .then((resp) => sendGetRequest());
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <>
-      {foundRobot ? (
+      {myRobot ? (
         <Container>
           <Row className="mt-5">
             <Col size={6}>
@@ -57,11 +74,11 @@ const Robot = (props) => {
             </Col>
             <Col size={6} style={{ marginTop: "50px" }}>
               <ul>
-                <li>ID: {foundRobot.id}</li>
-                <li>Name: {foundRobot.name}</li>
-                <li>PosX: {foundRobot.posX}</li>
-                <li>PosY: {foundRobot.posY}</li>
-                <li>Heading: {foundRobot.direction}</li>
+                <li>ID: {myRobot.id}</li>
+                <li>Name: {myRobot.name}</li>
+                <li>PosX: {myRobot.posX}</li>
+                <li>PosY: {myRobot.posY}</li>
+                <li>Heading: {myRobot.heading}</li>
               </ul>
               <Button className="m-3 bg-dark text-white" onClick={left}>
                 Left
