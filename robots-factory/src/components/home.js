@@ -47,7 +47,7 @@ const Home = () => {
   console.log(robots);
 
   return (
-    <Container>
+    <Container className="text-white mt-5">
       <h1 className="text-center mt-5">Create Robot</h1>
       <h2 className="text-center">NAME:</h2>
       <InputGroup className="mb-3 input mt-5">
@@ -63,9 +63,13 @@ const Home = () => {
         <ul className="mx-auto">
           {robots
             ? robots.map((robot, idx) => (
-                <div className="d-flex mt-3">
+                <div className="d-flex justify-content-between mt-3">
                   <li key={robot.id}>
-                    <Link to={"/robot/" + idx}>{robot.name}</Link>
+                    <Link to={"/robot/" + idx}>
+                      <i class="fab fa-android"></i>
+                      <span> </span>
+                      {robot.name}
+                    </Link>
                   </li>
                   <Button
                     className="bg-dark text-white ml-5"

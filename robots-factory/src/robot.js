@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import robot1 from "./img/man-320270_640.png";
 import robot2 from "./img/man-320274_640.png";
 import robot3 from "./img/man-320276_640.png";
-import robot4 from "./img/robot-3434997_640.png";
+import robot4 from "./img/man-320273_1920.png";
 import robot5 from "./img/man-320272_640.png";
 import { Link } from "react-router-dom";
 
@@ -67,7 +67,7 @@ const Robot = () => {
   return (
     <>
       {myRobot ? (
-        <Container>
+        <Container className="text-white mt-5">
           <Row className="mt-5">
             <Col size={6}>
               <img src={images[id]} width="500" alt={`Robot ${id}`} />

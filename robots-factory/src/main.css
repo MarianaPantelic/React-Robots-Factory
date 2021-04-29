@@ -1,5 +1,12 @@
 body {
   margin: 0;
+  height: 100vh;
+  background-image: url(../src/img/ai-5228064_1920.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: gray;
+  background-blend-mode: luminosity;
+  background-position: bottom center;
 }
 
 /*header section*/
@@ -31,8 +38,18 @@ body {
 }
 ul {
   font-size: 30px;
+  list-style: none;
 }
 .home a,
 .home a:visited {
   color: white;
+}
+.fl-right {
+  margin-left: 200px;
+}
+a,
+a:hover,
+a:visited {
+  color: white;
+  text-decoration: none;
 }
