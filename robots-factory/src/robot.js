@@ -45,7 +45,7 @@ const Robot = () => {
     }
   };
 
-  const right = () => {
+  const right = async () => {
     try {
       axios
         .post("http://localhost:3001/right", { id: myRobot.id })
@@ -54,7 +54,7 @@ const Robot = () => {
       console.log(error);
     }
   };
-  const go = () => {
+  const go = async () => {
     try {
       axios
         .post("http://localhost:3001/move", { id: myRobot.id })
