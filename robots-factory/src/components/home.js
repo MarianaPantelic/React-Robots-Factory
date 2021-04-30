@@ -22,7 +22,7 @@ const Home = () => {
 
   const sendGetRequest = async () => {
     try {
-      axios
+      await axios
         .get("http://localhost:3001/robots")
         .then((resp) => setRobots(resp.data));
     } catch (error) {
@@ -33,14 +33,14 @@ const Home = () => {
 
   const createRobot = async () => {
     console.log(inputRef.current.value);
-    axios
+    await axios
       .put("http://localhost:3001/create", { name: inputRef.current.value })
       .then((resp) => sendGetRequest());
     inputRef.current.value = "";
   };
 
   const removeRobot = (idx) => {
-    axios
+    await axios
       .delete("http://localhost:3001/delete", { data: { id: robots[idx].id } })
       .then((resp) => sendGetRequest());
   };
