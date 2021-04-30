@@ -33,16 +33,24 @@ const Home = () => {
 
   const createRobot = async () => {
     console.log(inputRef.current.value);
-    await axios
+    try {
+      await axios
       .put("http://localhost:3001/create", { name: inputRef.current.value })
       .then((resp) => sendGetRequest());
     inputRef.current.value = "";
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const removeRobot = (idx) => {
-    await axios
+    try {
+      await axios
       .delete("http://localhost:3001/delete", { data: { id: robots[idx].id } })
       .then((resp) => sendGetRequest());
+    } catch (error) {
+      console.log(error)
+    }
   };
   console.log(robots);
 
