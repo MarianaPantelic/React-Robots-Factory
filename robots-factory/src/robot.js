@@ -26,7 +26,7 @@ const Robot = () => {
 
   const sendGetRequest = async () => {
     try {
-      await axios
+      axios
         .get("http://localhost:3001/robots")
         .then((resp) => setRobots(resp.data));
     } catch (error) {
@@ -37,7 +37,7 @@ const Robot = () => {
 
   const left = async () => {
     try {
-      await axios
+      axios
         .post("http://localhost:3001/left", { id: myRobot.id })
         .then((resp) => sendGetRequest());
     } catch (error) {
@@ -47,7 +47,7 @@ const Robot = () => {
 
   const right = async () => {
     try {
-      await axios
+      axios
         .post("http://localhost:3001/right", { id: myRobot.id })
         .then((resp) => sendGetRequest());
     } catch (error) {
@@ -56,7 +56,7 @@ const Robot = () => {
   };
   const go = async () => {
     try {
-      await axios
+      axios
         .post("http://localhost:3001/move", { id: myRobot.id })
         .then((resp) => sendGetRequest());
     } catch (error) {
