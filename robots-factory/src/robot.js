@@ -67,12 +67,12 @@ const Robot = () => {
   return (
     <>
       {myRobot ? (
-        <Container className="text-white mt-5">
+        <Container className="text-white robot">
           <Row className="mt-5">
             <Col size={6}>
               <img src={images[id]} width="500" alt={`Robot ${id}`} />
             </Col>
-            <Col size={6} style={{ marginTop: "50px" }}>
+            <Col size={6} className="infos">
               <ul>
                 <li>ID: {myRobot.id}</li>
                 <li>Name: {myRobot.name}</li>

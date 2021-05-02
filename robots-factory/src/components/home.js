@@ -58,9 +58,9 @@ const Home = () => {
 
   return (
     <Container className="text-white mt-5">
-      <h1 className="text-center mt-5">Create Robot</h1>
-      <h2 className="text-center">NAME:</h2>
-      <InputGroup className="mb-3 input mt-5">
+      <h1 className="text-center heading">Create Robot</h1>
+      <h2 className="text-center mt-5">NAME:</h2>
+      <InputGroup className="mb-3 input mt-3">
         <InputGroup.Prepend>
           <Button variant="outline-secondary" onClick={createRobot}>
             Create
@@ -77,7 +77,7 @@ const Home = () => {
                   <li key={robot.id}>
                     <Link to={"/robot/" + idx}>
                       <i class="fab fa-android"></i>
-                      <span> </span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
                       {robot.name}
                     </Link>
                   </li>

@@ -12,14 +12,14 @@ body {
 /*header section*/
 .header {
   width: 100%;
-  height: 180px;
+  height: 10rem;
   background-color: black;
   margin: 0;
 }
 
 .headerImg {
-  width: 500px;
-  height: 180px;
+  width: 25rem;
+  height: 12rem;
   background-image: url(../src/img/robot-2701312_1920.png);
   background-size: contain;
   background-repeat: no-repeat;
@@ -52,4 +52,15 @@ a:hover,
 a:visited {
   color: white;
   text-decoration: none;
+}
+.heading {
+  margin-top: 80px;
+}
+
+/*robot page*/
+.robot {
+  margin-top: 100px;
+}
+.infos {
+  margin-top: 80px;
 }
