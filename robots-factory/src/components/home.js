@@ -44,6 +44,7 @@ const Home = () => {
   };
 
   const removeRobot = (idx) => {
+    alert("Are you sure you want to terminate the robot?");
     try {
       axios
         .delete("http://localhost:3001/delete", {
