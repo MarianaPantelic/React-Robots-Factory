@@ -59,14 +59,21 @@ const Home = () => {
   return (
     <Container className="text-white mt-5">
       <h1 className="text-center heading">Create Robot</h1>
-      <h2 className="text-center mt-5">NAME:</h2>
+      <h2 className="text-center mt-3">NAME:</h2>
       <InputGroup className="mb-3 input mt-3">
         <InputGroup.Prepend>
-          <Button variant="outline-secondary" onClick={createRobot}>
+          <Button
+            variant="outline-secondary text-primary"
+            onClick={createRobot}
+          >
             Create
           </Button>
         </InputGroup.Prepend>
-        <FormControl aria-describedby="basic-addon1" ref={inputRef} />
+        <FormControl
+          aria-describedby="basic-addon1"
+          ref={inputRef}
+          className="inp"
+        />
       </InputGroup>
 
       <Row>
@@ -83,6 +90,7 @@ const Home = () => {
                   </li>
                   <Button
                     className="bg-dark text-white ml-5"
+                    style={{ width: "220px" }}
                     onClick={() => removeRobot(idx)}
                   >
                     Terminate Robot

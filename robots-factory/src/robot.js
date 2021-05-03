@@ -80,19 +80,19 @@ const Robot = () => {
                 <li>PosY: {myRobot.posY}</li>
                 <li>Heading: {myRobot.heading}</li>
               </ul>
-              <Button className="m-3 bg-dark text-white" onClick={left}>
+              <Button className="m-3 bg-dark text-white btn" onClick={left}>
                 Left
               </Button>
-              <Button className="m-3 bg-dark text-white" onClick={right}>
+              <Button className="m-3 bg-dark text-white btn" onClick={right}>
                 Right
               </Button>
-              <Button className="m-3 bg-dark text-white" onClick={go}>
+              <Button className="m-3 bg-dark text-white btn" onClick={go}>
                 Go
               </Button>
             </Col>
           </Row>
           <Row>
-            <Button className="mt-5 bg-dark text-white mx-auto home">
+            <Button className="mt-5 bg-dark text-white mx-auto home btn">
               <Link to="/">Home</Link>
             </Button>
           </Row>
