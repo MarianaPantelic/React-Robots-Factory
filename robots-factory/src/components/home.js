@@ -35,7 +35,7 @@ const Home = () => {
     console.log(inputRef.current.value);
     try {
       axios
-        .put("http://localhost:3001/create", { name: inputRef.current.value })
+        .post("http://localhost:3001/robots", { name: inputRef.current.value })
         .then((resp) => sendGetRequest());
       inputRef.current.value = "";
     } catch (error) {
@@ -47,7 +47,7 @@ const Home = () => {
     alert("Are you sure you want to terminate the robot?");
     try {
       axios
-        .delete("http://localhost:3001/delete", {
+        .delete("http://localhost:3001/robots", {
           data: { id: robots[idx].id },
         })
         .then((resp) => sendGetRequest());

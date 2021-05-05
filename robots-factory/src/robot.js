@@ -17,9 +17,6 @@ const Robot = () => {
 
   const [robots, setRobots] = useState([]);
 
-  let myRobot = robots[id];
-  console.log(myRobot);
-
   useEffect(() => {
     sendGetRequest();
   }, []);
@@ -38,7 +35,7 @@ const Robot = () => {
   const left = async () => {
     try {
       axios
-        .post("http://localhost:3001/left", { id: myRobot.id })
+        .post("http://localhost:3001/robots/left", { id: robots[id].id })
         .then((resp) => sendGetRequest());
     } catch (error) {
       console.log(error);
@@ -48,7 +45,7 @@ const Robot = () => {
   const right = async () => {
     try {
       axios
-        .post("http://localhost:3001/right", { id: myRobot.id })
+        .post("http://localhost:3001/robots/right", { id: robots[id].id })
         .then((resp) => sendGetRequest());
     } catch (error) {
       console.log(error);
@@ -57,7 +54,7 @@ const Robot = () => {
   const go = async () => {
     try {
       axios
-        .post("http://localhost:3001/move", { id: myRobot.id })
+        .post("http://localhost:3001/robots/move", { id: robots[id].id })
         .then((resp) => sendGetRequest());
     } catch (error) {
       console.log(error);
@@ -66,7 +63,7 @@ const Robot = () => {
 
   return (
     <>
-      {myRobot ? (
+      {robots[id] ? (
         <Container className="text-white robot">
           <Row className="mt-5">
             <Col size={6}>
@@ -74,11 +71,11 @@ const Robot = () => {
             </Col>
             <Col size={6} className="infos">
               <ul>
-                <li>ID: {myRobot.id}</li>
-                <li>Name: {myRobot.name}</li>
-                <li>PosX: {myRobot.posX}</li>
-                <li>PosY: {myRobot.posY}</li>
-                <li>Heading: {myRobot.heading}</li>
+                <li>ID: {robots[id].id}</li>
+                <li>Name: {robots[id].name}</li>
+                <li>PosX: {robots[id].posX}</li>
+                <li>PosY: {robots[id].posY}</li>
+                <li>Heading: {robots[id].heading}</li>
               </ul>
               <Button className="m-3 bg-dark text-white btn" onClick={left}>
                 Left
