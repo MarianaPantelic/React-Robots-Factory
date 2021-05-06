@@ -1,3 +1,17 @@
+![Result](./src/img/robots.gif)
+
+This is a React Project made to learn the basic knowledge of backend - node.js and express.js. So to achieve that in the first phase I stored the data using Redux Store, then express.js and lowdb and finally, creating an express application using the express-generator, to keep the backend totally separated from the frontend. The backend express application used for this project you can find here:
+
+[Robots-Factory-Backend](https://github.com/MarianaPantelic/Robot-Factory-Backend)
+
+The project has multiple functionalities like:
+
+- create a new robot with the desired name and an unique id
+
+- delete a robot
+
+- move the robot: right, left or forward, using the two-dimensional x-y axis
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
